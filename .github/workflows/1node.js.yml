@@ -1,0 +1,27 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Deploy to firebse
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build_and_deploy:
+
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - run: npm ci
+    - run: npm run build
+    
+    -uses: FirebaseExtended/action-hosting-deploy@v0
+     with: 
+       repoToken: '${{ secrets.GITHUB_TOKENS }}'
+       firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_FIR_FINAL_FF4E7 }}'
+       channelID: live
+       projectId: fir-final-ff4e7
+
