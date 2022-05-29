@@ -16,10 +16,10 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - run: npm ci
-    - run: npm run build
+    - run: CI='' npm run build
     
     -uses: FirebaseExtended/action-hosting-deploy@v0
-     with: 
+     with:
        repoToken: '${{ secrets.GITHUB_TOKENS }}'
        firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_FIR_FINAL_FF4E7 }}'
        channelID: live
